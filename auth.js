@@ -8,6 +8,7 @@ let currentUser = null;
 function login() {
   const usernameInput = document.getElementById("username");
   const passwordInput = document.getElementById("password");
+  const errorMessageDiv = document.getElementById("errorMessage");
 
   const enteredUsername = usernameInput.value;
   const enteredPassword = passwordInput.value;
@@ -21,7 +22,8 @@ function login() {
     showWelcomeMessage();
   } else {
     // Failed login
-    alert("Invalid username or password. Please try again.");
+    errorMessageDiv.textContent = "Invalid username or password. Please try again.";
+    errorMessageDiv.style.display = "block";
   }
 
   // Clear the input fields
@@ -45,6 +47,11 @@ function showWelcomeMessage() {
   document.getElementById("loggedInUser").textContent = currentUser.username;
   // 跳转到 index.html
   window.location.href = 'index2.html';
+}
+
+function clearErrorMessage() {
+  const errorMessageDiv = document.getElementById("errorMessage");
+  errorMessageDiv.style.display = "none"; // Hide the error message
 }
 
 // Initial setup: Show the login form

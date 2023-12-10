@@ -13,12 +13,12 @@
 
 <div id="loginForm">
     <label for="username">Username:</label>
-    <input type="text" id="username" required>
-
+    <input type="text" id="username" required oninput="clearErrorMessage()">
     <label for="password">Password:</label>
-    <input type="password" id="password" required>
+    <input type="password" id="password" required oninput="clearErrorMessage()">
 
     <button onclick="login()">Login</button>
+    <div id="errorMessage" style="display:none; color: red;"></div>
 </div>
 
 <div id="welcomeMessage" style="display:none;">

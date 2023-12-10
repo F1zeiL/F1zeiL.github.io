@@ -15,7 +15,7 @@
     <button data-en="Logout" data-cn="登出" onclick="logout()">Logout</button>
 </div>
 <div className="demo">
-    <h2>Video Window</h2>
+    <h2 data-en="Video Window" data-cn="视频窗口">Video Window</h2>
     <div id="video-container"></div>
     <div>
         <button data-en="Play" data-cn="播放" onclick="play()">Play</button>
@@ -148,16 +148,19 @@
     }
     function toggleLanguage() {
       var isEnglish = document.querySelector("#languageSwitcher button").textContent === "English";
-      var buttons = document.querySelectorAll("button");
+      // 获取所有需要切换语言的元素
+      var elementsToSwitch = document.querySelectorAll('[data-en], [data-cn]');
 
-      buttons.forEach(function(button) {
+      elementsToSwitch.forEach(function(element) {
         if (isEnglish) {
-          button.textContent = button.getAttribute('data-cn');
+          // 如果当前是英文，则切换到中文
+          element.textContent = element.getAttribute('data-cn');
         } else {
-          button.textContent = button.getAttribute('data-en');
+          // 如果当前是中文，则切换到英文
+          element.textContent = element.getAttribute('data-en');
         }
       });
-
+      // 切换语言切换按钮的文字
       document.querySelector("#languageSwitcher button").textContent = isEnglish ? "中文" : "English";
     }
 </script>
