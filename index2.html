@@ -69,16 +69,10 @@
         }
     });
     function fullScreen() {
-      var videoContainer = document.getElementById('video-container');
-      if (videoContainer.requestFullscreen) {
-        videoContainer.requestFullscreen();
-      } else if (videoContainer.mozRequestFullScreen) { /* Firefox */
-        videoContainer.mozRequestFullScreen();
-      } else if (videoContainer.webkitRequestFullscreen) { /* Chrome, Safari & Opera */
-        videoContainer.webkitRequestFullscreen();
-      } else if (videoContainer.msRequestFullscreen) { /* IE/Edge */
-        videoContainer.msRequestFullscreen();
-      }
+      var playPromise = player.fullScreen();
+      playPromise.then((data) => {
+        console.log("promise 获取 数据", data)
+      })
 
       // 检测手机设备并横屏
       if (/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)) {
@@ -87,6 +81,17 @@
         } else if (screen.lockOrientation) {
           screen.lockOrientation('landscape');
         }
+      }
+
+      // 调整视频容器和视频大小以适应全屏
+      adjustVideoSize();
+    }
+    function adjustVideoSize() {
+      var videoContainer = document.getElementById('video-container');
+      var video = videoContainer.querySelector('video');
+      if (video) {
+        video.style.width = '100%';
+        video.style.height = '100%';
       }
     }
     function play() {

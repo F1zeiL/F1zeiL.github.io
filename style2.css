@@ -15,13 +15,25 @@ body {
 }
 
 #video-container {
+  margin: 0; /* 修改为0 */
+  padding: 0; /* 修改为0 */
   display: flex;
   flex-direction: column;
+  justify-content: center;
+  align-items: center;
   top: 0;
   left: 0;
   width: 100%;
   height: 100%;
   /* 可以根据需要添加更多样式，如背景色、内边距等 */
+}
+
+#video-container video {
+  margin: 0; /* 修改为0 */
+  padding: 0; /* 修改为0 */
+  width: 100%;
+  height: 100%;
+  object-fit: cover; /* 这可以确保视频等比例缩放并填满整个容器 */
 }
 
 button {
