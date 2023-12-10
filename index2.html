@@ -69,10 +69,16 @@
         }
     });
     function fullScreen() {
-      var playPromise = player.fullScreen();
-      playPromise.then((data) => {
-        console.log("promise 获取 数据", data)
-      })
+      var videoContainer = document.getElementById('video-container');
+      if (videoContainer.requestFullscreen) {
+        videoContainer.requestFullscreen();
+      } else if (videoContainer.mozRequestFullScreen) { /* Firefox */
+        videoContainer.mozRequestFullScreen();
+      } else if (videoContainer.webkitRequestFullscreen) { /* Chrome, Safari & Opera */
+        videoContainer.webkitRequestFullscreen();
+      } else if (videoContainer.msRequestFullscreen) { /* IE/Edge */
+        videoContainer.msRequestFullscreen();
+      }
     }
     function play() {
       var playPromise = player.play();
